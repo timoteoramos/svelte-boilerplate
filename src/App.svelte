@@ -1,10 +1,18 @@
 <script lang="ts">
+  import axios from 'axios';
 	export let name: string;
+
+  let output: string = '';
+
+  axios.get("https://api.coindesk.com/v1/bpi/currentprice.json").then((response) => {
+    output = `Bitcoin: US$ ${response.data.bpi.USD.rate}`;
+  });
 </script>
 
 <main>
 	<h1>Hello {name}!</h1>
 	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+  <p>{output}</p>
 </main>
 
 <style>
